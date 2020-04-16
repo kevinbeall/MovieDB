@@ -1,0 +1,52 @@
+h1 {
+  text-align: center;
+}
+
+img {
+  height: 50vh;
+  width: 25vw;
+  display: block;
+  margin: auto;
+}
+
+body {
+  background: #4b6cb7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.searchBar {
+  width: 70%;
+  margin: 30% auto;
+  transition: all 0.5s;
+}
+
+.form-control {
+  border: none;
+}
+
+.search {
+  color: white;
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.searched {
+  margin: 5% auto;
+}
+
+.search:focus {
+  color: white;
+}
+
+.search::placeholder {
+  color: white;
+}
+
+.submit {
+  background: #C04848;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #480048, #C04848);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #480048, #C04848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
