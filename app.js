@@ -1,50 +1,56 @@
-//const url = `https://api.themoviedb.org/3/search/movie?api_key=b96c6c8bbe0db73e82c8408cc65ed0f7&language=en-US&query=fight%20club&page1&include_adult=false`;
-let first = 0;
-let second = 1;
+// get DOM elements
+const searchBar = document.querySelector('.searchBar');
+const searchField = document.querySelector('.search');
+const movieImageWrapper = document.querySelector('.movieImages');
+const firstImage = document.querySelector('.firstImage');
+const secondImage = document.querySelector('.secondImage');
+const lastImage = document.querySelector('.lastImage');
+const releaseDate = document.querySelector('.date');
+const movieTitle = document.querySelector('.movieTitle');
+const movieOverview = document.querySelector('.movieOverview');
+
+//counter variables for image looping
+let first;
+let second;
 let last;
 let arrLength;
+
+// storage for filtered array
 let usable;
+
 // fetches json for specific search url
 async function fetchMovieInfo(url) {
   await fetch(url).then(async res => {
     const data = await res.json();
+    //filter array for movie objects which include a poster
+    usable = data.results.filter(res => res.poster_path !== null);
+    // reset counters when new search initiated
     first = 0;
     second = 1;
-    last = 0;
-    handleData(data);
+    last = usable.length - 1;
+    arrLength = usable.length - 1;
+    update();
   })
 }
 
-function handleData(data) {
-  usable = data.results.filter(res => res.poster_path !== null);
-  last = usable.length - 1;
-  arrLength = usable.length - 1;
-  document.querySelector('.firstImage').src = `https://image.tmdb.org/t/p/original/${usable[first].poster_path}`;
-  document.querySelector('.secondImage').src = `https://image.tmdb.org/t/p/original/${usable[second].poster_path}`;
-  document.querySelector('.lastImage').src = `https://image.tmdb.org/t/p/original/${usable[last].poster_path}`;
-  document.querySelector('.date').innerHTML = usable[first].release_date;
-  document.querySelector('.movieTitle').innerHTML = usable[first].title;
-  document.querySelector('.movieOverview').textContent = usable[first].overview;
-}
-
 function update() {
-  document.querySelector('.firstImage').src = `https://image.tmdb.org/t/p/original/${usable[first].poster_path}`;
-  document.querySelector('.secondImage').src = `https://image.tmdb.org/t/p/original/${usable[second].poster_path}`;
-  document.querySelector('.lastImage').src = `https://image.tmdb.org/t/p/original/${usable[last].poster_path}`;
-  document.querySelector('.date').innerHTML = usable[first].release_date;
-  document.querySelector('.movieTitle').innerHTML = usable[first].title;
-  document.querySelector('.movieOverview').textContent = usable[first].overview;
+  firstImage.src = `https://image.tmdb.org/t/p/original/${usable[first].poster_path}`;
+  secondImage.src = `https://image.tmdb.org/t/p/original/${usable[second].poster_path}`;
+  lastImage.src = `https://image.tmdb.org/t/p/original/${usable[last].poster_path}`;
+  releaseDate.innerHTML = usable[first].release_date;
+  movieTitle.innerHTML = usable[first].title;
+  movieOverview.textContent = usable[first].overview;
 }
 
 const handleSearchCss = () => {
-  document.querySelector('.searchBar').classList.add('searched');
-  document.querySelector('.search').value = '';
-  document.querySelector('.movieImages').classList.remove('hidden');
+  searchBar.classList.add('searched');
+  searchField.value = '';
+  movieImageWrapper.classList.remove('hidden');
 }
 
 // Event Listeners
 
-//submit button selected
+//submit button used to search
 document.querySelector('.submit').addEventListener('click', (e) => {
   //get value of search field to be added to the URL
   const search = document.querySelector('.search').value;
@@ -52,6 +58,7 @@ document.querySelector('.submit').addEventListener('click', (e) => {
   let url = `https://api.themoviedb.org/3/search/movie?api_key=b96c6c8bbe0db73e82c8408cc65ed0f7&language=en-US&query=${search}&page1&include_adult=false`;
   fetchMovieInfo(url);
 })
+//enter used to search
 document.querySelector('.search').addEventListener('keydown', (e) => {
   if (e.code === 'Enter') {
     const search = document.querySelector('.search').value;
@@ -62,43 +69,19 @@ document.querySelector('.search').addEventListener('keydown', (e) => {
 })
 
 document.querySelector('.secondImage').addEventListener('click', () => {
-  if (first === arrLength) {
-    first = 0;
-  } else {
-    first++;
-  }
-  if (second === arrLength) {
-    second = 0;
-  } else {
-    second++;
-  }
-  if (last === arrLength) {
-    last = 0;
-  } else {
-    last++;
-  }
+  //update object index within usable array
+  first === arrLength ? first = 0 : first++;
+  second === arrLength ? second = 0 : second++;
+  last === arrLength ? last = 0 : last++;
   update();
-  console.log(last, first, second);
 })
 
 document.querySelector('.lastImage').addEventListener('click', () => {
-  if (first === 0) {
-    first = arrLength;
-  } else {
-    first--;
-  }
-  if (second === 0) {
-    second = arrLength;
-  } else {
-    second--;
-  }
-  if (last === 0) {
-    last = arrLength;
-  } else {
-    last--;
-  }
+  //update object index within usable array
+  first === 0 ? first = arrLength : first--;
+  second === 0 ? second = arrLength : second--;
+  last === 0 ? last = arrLength : last--;
   update();
-  console.log(last, first, second);
 })
 
 
