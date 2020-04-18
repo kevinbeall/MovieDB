@@ -2,18 +2,12 @@ h1 {
   text-align: center;
 }
 
-img {
-  height: 50vh;
-  width: 25vw;
-  display: block;
-  margin: auto;
-}
-
 body {
   background: #4b6cb7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
+  overflow-x: hidden;
 }
 
 .searchBar {
@@ -49,4 +43,42 @@ body {
   background: #C04848;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #480048, #C04848);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #480048, #C04848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.movieImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  opacity: 1;
+  transition: all 1s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.movieImages img {
+  height: 400px;
+  width: 250px;
+  align-self: center;
+  justify-self: center;
+}
+
+.movieImages .lastImage, .movieImages .secondImage {
+  height: 300px;
+  width: 200px;
+}
+
+.card {
+  width: 70%;
+  margin: 50px auto;
+  color: black;
+}
+
+.movieTitle {
+  font-size: 2em;
+  text-align: center;
+}
+
+.releaseDate {
+  text-align: right;
 }

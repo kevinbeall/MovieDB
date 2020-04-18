@@ -13,13 +13,27 @@
 <body>
   <h1>Another Movie Database</h1>
   <div class="searchBar input-group mb-3">
-    <input type="text" class="search form-control" placeholder="Search" aria-label="Movie Search">
+    <input type="text" class="search form-control" placeholder="The Itilian Job, Happy Gilmore, Moana..." aria-label="Movie Search">
     <div class="input-group-append">
-      <button type="button" class="submit btn btn-secondary">Submit</button>
+      <button type="button" class="submit btn btn-secondary">Search</button>
     </div>
   </div>
-  <div class='overview'></div>
-  <img class="image" src="" alt="" />
+
+  <div class="movieImages hidden">
+    <img class="lastImage" src="#" alt="image">
+    <img class="firstImage" src="#" alt="image">
+    <img class="secondImage" src="#" alt="image">
+  </div>
+  <div class="card movieInfoCard">
+    <h5 class="card-header movieTitle"></h5>
+    <div class="card-body">
+      <p class="card-text movieOverview"></p>
+      <p class="releaseDate">Released:
+        <span class="date"></span>
+      </p>
+    </div>
+  </div>
+
 
 
 
